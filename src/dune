@@ -1,0 +1,21 @@
+(library
+  (name klee4labels_lib)
+  (public_name klee4labels)
+  (modules utils options types cmd_helpers plot)
+  (preprocess (pps ppx_deriving_encoding))
+  (libraries unix str lwt inotify.lwt ocamlgraph json-data-encoding yojson)
+)
+
+(executable
+  (name klee4labels)
+  (public_name klee4labels)
+  (modules klee4labels)
+  (libraries klee4labels_lib)
+)
+
+(executable
+  (name merge_graphs)
+  (public_name merge_graphs)
+  (modules merge_graphs)
+  (libraries klee4labels_lib)
+)
